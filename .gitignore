@@ -1,0 +1,23 @@
+# ROS / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE/editor
+.vscode/
+.idea/
+
+# ROS bags / databases
+*.bag
+*.db3
+
+# Temporary files
+*.tmp
+*.swp
+.DS_Store
