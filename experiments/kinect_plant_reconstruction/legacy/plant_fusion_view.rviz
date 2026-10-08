@@ -1,0 +1,83 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Fused plant1
+        - /Fused plant1/Status1
+      Splitter Ratio: 0.55
+  - Class: rviz_common/Views
+    Name: Views
+    Expanded:
+      - /Current View1
+Visualization Manager:
+  Class: ""
+  Name: root
+  Enabled: true
+  Global Options:
+    Background Color: 32; 32; 32
+    Fixed Frame: plant_map
+    Frame Rate: 30
+  Displays:
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Fused plant
+      Enabled: true
+      Value: true
+      Alpha: 1
+      Topic:
+        Value: /plant_fusion/model
+        Depth: 1
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+        Filter size: 10
+      Position Transformer: XYZ
+      Color Transformer: FlatColor
+      Color: 80; 230; 130
+      Style: Points
+      Size (Pixels): 3
+      Size (m): 0.005
+      Decay Time: 0
+      Selectable: true
+      Use Fixed Frame: true
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+      Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Value: Orbit (rviz_default_plugins)
+      Target Frame: <Fixed Frame>
+      Distance: 3.5
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 1.5
+      Pitch: 0.5
+      Yaw: 1.0
+      Near Clip Distance: 0.01
+      Invert Z Axis: false
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+    Saved: []
+Window Geometry:
+  Width: 1280
+  Height: 800
+  X: 40
+  Y: 40
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Displays:
+    collapsed: false
+  Views:
+    collapsed: false

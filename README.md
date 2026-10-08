@@ -43,6 +43,14 @@ Future demos will investigate additional capabilities such as mobile-base reposi
 
 See [`simulation_demos/demo_01_geometric_canopy_shaping_tiago/`](simulation_demos/demo_01_geometric_canopy_shaping_tiago/) for the current demo.
 
+## Kinect plant reconstruction experiment
+
+The [Kinect plant reconstruction experiment](experiments/kinect_plant_reconstruction/)
+adds manual depth captures, offline multi-view alignment, a combined 38-view
+plant point cloud, and an RViz viewer. It documents both the resulting model
+and the limits of the earlier continuous-fusion prototype. This is experimental
+perception work, not validated physical-platform cutting software.
+
 ## Third-party simulation platform
 
 Demo 01 uses the **TIAGo mobile manipulator from PAL Robotics** as an external simulation platform. TIAGo is not the AL-FALLAH robot design, and this repository does not claim ownership of the TIAGo robot, its mechanical design, or PAL Robotics' simulation packages.

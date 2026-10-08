@@ -1,0 +1,11 @@
+# Raw captures and generated replay intermediates
+*.zip
+*.npz
+*.npy
+offline/edges.json
+offline/registration.log
+offline/alignment_report.json
+offline/plant_combined_38.ply
+offline/plant_combined_preview.png
+plant_views_*/
+.venv*/
