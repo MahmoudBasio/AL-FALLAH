@@ -55,7 +55,11 @@ perception work, not validated physical-platform cutting software.
 
 Actual captured geometry, with colours indicating height rather than RGB.
 
-**[Interactive 3D viewer](experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html)**
+**[Open interactive 3D model online](https://MahmoudBasio.github.io/AL-FALLAH/)**
+— available after the repository's [GitHub Pages setup](docs/GITHUB_PAGES.md)
+is enabled and deployed.
+
+**[Download the offline viewer](experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html)**
 — open the file on GitHub, choose **Download raw file**, then open the downloaded
 HTML in your browser. Drag to rotate, scroll to zoom, or use the preset views.
 It contains the full cloud and works offline. GitHub READMEs display static
