@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AL-FALLAH · Interactive plant point cloud</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101b27;color:#eef5fa;font:15px system-ui,sans-serif}header{padding:22px 26px 10px}h1{font-size:24px;margin:0 0 8px}p{margin:6px 0;color:#b8cbd9}main{position:relative}canvas{display:block;width:100%;height:70vh;min-height:350px;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.controls{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:12px 26px;background:#182838}button{background:#2f5468;color:white;border:1px solid #54778a;border-radius:6px;padding:9px 14px;cursor:pointer}button:hover{background:#416c80}label{display:flex;gap:8px;align-items:center}footer{padding:14px 26px;color:#b8cbd9;font-size:13px;max-width:1000px}#error{display:none;padding:20px;color:#ffcfb0}input{accent-color:#59d7b4}a{color:#79dfc6}
+</style>
+<header><h1>AL-FALLAH / Plant point cloud</h1><p>38 aligned Kinect captures · <span id="count"></span> points · actual measured geometry</p></header>
+<div class="controls"><button id="reset">Reset view</button><button id="front">Front</button><button id="top">Top</button><button id="spin" aria-pressed="false">Auto-rotate</button><label>Point size <input id="size" type="range" min="1" max="5" step=".25" value="1.5"></label><label>Zoom <input id="zoom" type="range" min=".5" max="5" step=".05" value="1.7"></label></div>
+<main><canvas id="cloud" aria-label="Interactive 3D point cloud of the reconstructed plant"></canvas><div id="error" role="alert"></div></main>
+<footer><p>Drag to rotate · scroll to zoom · Shift-drag to pan. On touch screens, drag to rotate and use the zoom slider.</p><p>Colours show height, not RGB. The 5 mm fusion grid is not measured accuracy. Leaf thickness, local misalignment and missing surfaces may remain. This is a saved model, not a live camera stream.</p><p>All model data is embedded in this file. No uploads, external scripts or network connection are required.</p></footer>
+<script id="data" type="application/json">__MODEL_JSON__</script>
+<script>
+'use strict';
+const model=JSON.parse(document.getElementById('data').textContent);
+document.getElementById('count').textContent=model.count.toLocaleString();
+const canvas=document.getElementById('cloud'),gl=canvas.getContext('webgl',{antialias:true,alpha:false});
+function fail(message){const e=document.getElementById('error');e.textContent=message;e.style.display='block';canvas.style.display='none';}
+if(!gl){fail('WebGL is unavailable in this browser. Try a browser with hardware acceleration enabled.');}
+else{try{
+const vertex=`attribute vec3 position; uniform vec2 rotation; uniform vec2 pan; uniform float aspect; uniform float zoom; uniform float size; varying vec3 colour;
+void main(){float c=cos(rotation.x),s=sin(rotation.x),cp=cos(rotation.y),sp=sin(rotation.y);vec3 p=vec3(position.y,position.z,position.x);p=vec3(c*p.x+s*p.z,p.y,-s*p.x+c*p.z);p=vec3(p.x,cp*p.y-sp*p.z,sp*p.y+cp*p.z);gl_Position=vec4(p.x*zoom/aspect+pan.x,p.y*zoom+pan.y,p.z*.4,1.);gl_PointSize=size;float h=clamp(position.z+.5,0.,1.);colour=mix(vec3(.2,.45,.78),vec3(.77,.93,.20),h);}`;
+const fragment=`precision mediump float;varying vec3 colour;void main(){vec2 d=gl_PointCoord-vec2(.5);if(dot(d,d)>.25)discard;gl_FragColor=vec4(colour,1.);}`;
+function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
+const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);
+const bytes=Uint8Array.from(atob(model.data),c=>c.charCodeAt(0)),data=new DataView(bytes.buffer),points=new Float32Array(model.count*3);
+if(bytes.length!==model.count*6)throw Error('Embedded point count mismatch');
+const extent=Math.max(...model.max.map((v,i)=>v-model.min[i]));
+for(let i=0;i<points.length;i++){const axis=i%3;const value=model.min[axis]+data.getUint16(i*2,true)/65535*(model.max[axis]-model.min[axis]);points[i]=(value-(model.max[axis]+model.min[axis])/2)/extent;}
+const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,points,gl.STATIC_DRAW);const location=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,3,gl.FLOAT,false,0,0);
+const uniforms=Object.fromEntries(['rotation','pan','aspect','zoom','size'].map(n=>[n,gl.getUniformLocation(program,n)]));
+gl.enable(gl.DEPTH_TEST);gl.clearColor(.063,.106,.153,1);
+let yaw=.7,pitch=.15,pan=[0,0],rotating=false,drag=null;
+const zoom=document.getElementById('zoom'),size=document.getElementById('size');
+function draw(){const ratio=Math.min(devicePixelRatio||1,2);const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniform2f(uniforms.rotation,yaw,pitch);gl.uniform2fv(uniforms.pan,pan);gl.uniform1f(uniforms.aspect,w/h);gl.uniform1f(uniforms.zoom,Number(zoom.value));gl.uniform1f(uniforms.size,Number(size.value)*ratio);gl.drawArrays(gl.POINTS,0,model.count);}
+canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag={x:e.clientX,y:e.clientY};if(e.shiftKey){pan[0]+=dx/canvas.clientWidth*2;pan[1]-=dy/canvas.clientHeight*2;}else{yaw+=dx*.008;pitch=Math.max(-1.57,Math.min(1.57,pitch+dy*.008));}draw();});
+for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,()=>drag=null);
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom.value=Math.max(.5,Math.min(5,Number(zoom.value)*Math.exp(-e.deltaY*.001)));draw();},{passive:false});
+document.getElementById('reset').onclick=()=>{yaw=.7;pitch=.15;pan=[0,0];zoom.value=1.7;size.value=1.5;draw();};
+document.getElementById('front').onclick=()=>{yaw=0;pitch=0;pan=[0,0];draw();};
+document.getElementById('top').onclick=()=>{yaw=0;pitch=1.57;pan=[0,0];draw();};
+document.getElementById('spin').onclick=()=>{rotating=!rotating;document.getElementById('spin').setAttribute('aria-pressed',String(rotating));};
+zoom.oninput=draw;size.oninput=draw;window.addEventListener('resize',draw);
+let previous=0;function tick(t){if(rotating){yaw+=(t-previous)*.0002;draw();}previous=t;requestAnimationFrame(tick);}draw();requestAnimationFrame(tick);
+window.viewerReady=true;
+}catch(error){fail('Unable to display model: '+error.message);}}
+</script></html>

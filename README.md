@@ -51,6 +51,22 @@ plant point cloud, and an RViz viewer. It documents both the resulting model
 and the limits of the earlier continuous-fusion prototype. This is experimental
 perception work, not validated physical-platform cutting software.
 
+![3D point cloud reconstructed from 38 Kinect captures](experiments/kinect_plant_reconstruction/results/scan_38/plant_3d_view.png)
+
+Actual captured geometry, with colours indicating height rather than RGB.
+
+**[Interactive 3D viewer](experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html)**
+— open the file on GitHub, choose **Download raw file**, then open the downloaded
+HTML in your browser. Drag to rotate, scroll to zoom, or use the preset views.
+It contains the full cloud and works offline. GitHub READMEs display static
+images; they do not execute this interactive viewer inline.
+
+![Front, top and side views of the combined plant cloud](experiments/kinect_plant_reconstruction/results/scan_38/plant_combined_preview.png)
+
+The reconstruction contains 283,501 points. The 5 mm fusion grid is a processing
+setting, not a claim of measured accuracy. See the experiment for downloads,
+reproduction steps and limitations.
+
 ## Third-party simulation platform
 
 Demo 01 uses the **TIAGo mobile manipulator from PAL Robotics** as an external simulation platform. TIAGo is not the AL-FALLAH robot design, and this repository does not claim ownership of the TIAGo robot, its mechanical design, or PAL Robotics' simulation packages.
