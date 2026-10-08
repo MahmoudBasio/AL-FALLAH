@@ -51,13 +51,16 @@ plant point cloud, and an RViz viewer. It documents both the resulting model
 and the limits of the earlier continuous-fusion prototype. This is experimental
 perception work, not validated physical-platform cutting software.
 
-![3D point cloud reconstructed from 38 Kinect captures](experiments/kinect_plant_reconstruction/results/scan_38/plant_3d_view.png)
+[![Rotating plant point cloud — click to explore in 3D](experiments/kinect_plant_reconstruction/results/scan_38/plant_rotation.gif)](https://MahmoudBasio.github.io/AL-FALLAH/)
+
+**Click the animation or photo below to rotate and zoom the full model yourself.**
+
+[![3D point cloud reconstructed from 38 Kinect captures — open interactive viewer](experiments/kinect_plant_reconstruction/results/scan_38/plant_3d_view.png)](https://MahmoudBasio.github.io/AL-FALLAH/)
 
 Actual captured geometry, with colours indicating height rather than RGB.
 
 **[Open interactive 3D model online](https://MahmoudBasio.github.io/AL-FALLAH/)**
-— available after the repository's [GitHub Pages setup](docs/GITHUB_PAGES.md)
-is enabled and deployed.
+— hosted on GitHub Pages; no download required.
 
 **[Download the offline viewer](experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html)**
 — open the file on GitHub, choose **Download raw file**, then open the downloaded

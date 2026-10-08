@@ -4,7 +4,11 @@ Manual multi-view capture and offline plant reconstruction using an Xbox 360
 Kinect, Ubuntu 22.04 and ROS 2 Humble. This is a perception experiment, not a
 validated cutting model or the final AL-FALLAH robot implementation.
 
-![3D view of the actual reconstructed plant](results/scan_38/plant_3d_view.png)
+[![Rotating plant point cloud — click to explore in 3D](results/scan_38/plant_rotation.gif)](https://MahmoudBasio.github.io/AL-FALLAH/)
+
+Click the animation or photo to open the [live interactive viewer](https://MahmoudBasio.github.io/AL-FALLAH/).
+
+[![3D view of the actual reconstructed plant](results/scan_38/plant_3d_view.png)](https://MahmoudBasio.github.io/AL-FALLAH/)
 
 ![38-view combined plant from front, top and side](results/scan_38/plant_combined_preview.png)
 
@@ -23,6 +27,8 @@ does not change the scan's underlying accuracy limitations.
 
 Regenerate it with `python3 build_interactive_viewer.py` (NumPy required).
 Regenerate the static 3D image with `python3 render_preview.py` (Matplotlib required).
+Regenerate the looping GIF with `python3 render_rotation.py` (NumPy, Matplotlib and Pillow required).
+The GIF uses a 65,000-point display sample; the interactive viewer contains the full model.
 
 ## What works in this snapshot
 
