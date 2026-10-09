@@ -2,7 +2,7 @@
 
 **AL-FALLAH** is a developing research project for autonomous mobile manipulation in tree and vegetation maintenance.
 
-It is developed by [Mahmoud Basiony](https://www.linkedin.com/in/basio/), a
+It is developed by [Mahmoud Basiony](https://www.linkedin.com/in/mahmoud-basiony-robotics), a
 robotics engineering student at May University in Cairo. Find his work on
 [GitHub as MahmoudBasio](https://github.com/MahmoudBasio) or explore the
 [AL-FALLAH project and interactive plant point cloud](https://mahmoudbasio.github.io/AL-FALLAH/).
