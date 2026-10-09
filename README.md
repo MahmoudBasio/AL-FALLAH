@@ -2,6 +2,11 @@
 
 **AL-FALLAH** is a developing research project for autonomous mobile manipulation in tree and vegetation maintenance.
 
+It is developed by [Mahmoud Basiony](https://www.linkedin.com/in/basio/), a
+robotics engineering student at May University in Cairo. Find his work on
+[GitHub as MahmoudBasio](https://github.com/MahmoudBasio) or explore the
+[AL-FALLAH project and interactive plant point cloud](https://mahmoudbasio.github.io/AL-FALLAH/).
+
 The long-term project is broader than geometric tree shaping. Planned capabilities include canopy shaping, selective pruning, inspection, cutting, perception, autonomous base repositioning, and other tree-care operations.
 
 > **Important:** The material currently published in this repository is **demo-stage research code**, not the final AL-FALLAH software stack and not the physical-system implementation.

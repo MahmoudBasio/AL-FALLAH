@@ -3,18 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore AL-FALLAH's plant point cloud reconstructed from 38 Kinect captures.">
-  <title>AL-FALLAH | Interactive plant reconstruction</title>
+  <meta name="description" content="Mahmoud Basiony's AL-FALLAH agricultural robotics project: ROS 2 research, Kinect v1 plant point-cloud reconstruction, and interactive 3D visualization.">
+  <link rel="canonical" href="https://mahmoudbasio.github.io/AL-FALLAH/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mahmoud Basiony | AL-FALLAH Agricultural Robotics">
+  <meta property="og:description" content="A ROS 2 research project exploring 3D plant reconstruction and future tree-shaping robotics.">
+  <meta property="og:url" content="https://mahmoudbasio.github.io/AL-FALLAH/">
+  <meta property="og:image" content="https://mahmoudbasio.github.io/AL-FALLAH/experiments/kinect_plant_reconstruction/results/scan_38/plant_3d_view.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Mahmoud Basiony | AL-FALLAH Agricultural Robotics</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mahmoud Basiony",
+    "url": "https://mahmoudbasio.github.io/AL-FALLAH/",
+    "jobTitle": "Robotics Engineering Student",
+    "affiliation": {"@type": "CollegeOrUniversity", "name": "May University in Cairo"},
+    "sameAs": [
+      "https://github.com/MahmoudBasio",
+      "https://www.linkedin.com/in/basio/",
+      "https://orcid.org/0009-0007-1747-1609"
+    ],
+    "knowsAbout": ["Robotics", "ROS 2", "MoveIt 2", "Embedded Systems", "3D Point Clouds", "Agricultural Robotics"]
+  }
+  </script>
   <style>
     html,body{margin:0;height:100%;background:#101b27;color:#eef5fa;font:14px system-ui,sans-serif}
     body{display:flex;flex-direction:column}
     nav{display:flex;justify-content:space-between;gap:16px;padding:12px 20px;background:#182838}
+    header{padding:12px 20px;background:#101b27;border-bottom:1px solid #314253}
+    header h1{font-size:18px;margin:0 0 4px}
+    header p{margin:0;color:#c2d0da;line-height:1.45}
+    header .links{margin-top:5px}
     a{color:#79dfc6;text-decoration:none}a:hover{text-decoration:underline}
     iframe{flex:1;width:100%;border:0;min-height:0}
   </style>
 </head>
 <body>
   <nav><a href="https://github.com/MahmoudBasio/AL-FALLAH">AL-FALLAH repository</a><a href="experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html">Open viewer full screen</a></nav>
+  <header>
+    <h1>AL-FALLAH agricultural robotics research</h1>
+    <p>Created by Mahmoud Basiony, a robotics engineering student at May University in Cairo. Exploring ROS 2, perception, and 3D plant reconstruction toward future tree-care robotics.</p>
+    <p class="links"><a href="https://github.com/MahmoudBasio">MahmoudBasio on GitHub</a> · <a href="https://www.linkedin.com/in/basio/">Mahmoud Basiony on LinkedIn</a></p>
+  </header>
   <iframe title="Interactive plant point cloud" src="experiments/kinect_plant_reconstruction/results/scan_38/interactive_plant.html" allow="fullscreen"></iframe>
 </body>
 </html>

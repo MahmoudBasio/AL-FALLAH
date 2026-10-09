@@ -4,6 +4,11 @@ Manual multi-view capture and offline plant reconstruction using an Xbox 360
 Kinect, Ubuntu 22.04 and ROS 2 Humble. This is a perception experiment, not a
 validated cutting model or the final AL-FALLAH robot implementation.
 
+This experiment is part of [AL-FALLAH](https://github.com/MahmoudBasio/AL-FALLAH),
+a tree-care robotics research project developed by [Mahmoud Basiony](https://www.linkedin.com/in/basio/).
+See the [project profile on GitHub](https://github.com/MahmoudBasio) or visit the
+[interactive plant point-cloud viewer](https://mahmoudbasio.github.io/AL-FALLAH/).
+
 [![Rotating plant point cloud — click to explore in 3D](results/scan_38/plant_rotation.gif)](https://MahmoudBasio.github.io/AL-FALLAH/)
 
 Click the animation or photo to open the [live interactive viewer](https://MahmoudBasio.github.io/AL-FALLAH/).
