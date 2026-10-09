@@ -5,7 +5,7 @@ Kinect, Ubuntu 22.04 and ROS 2 Humble. This is a perception experiment, not a
 validated cutting model or the final AL-FALLAH robot implementation.
 
 This experiment is part of [AL-FALLAH](https://github.com/MahmoudBasio/AL-FALLAH),
-a tree-care robotics research project developed by [Mahmoud Basiony](https://www.linkedin.com/in/basio/).
+a tree-care robotics research project developed by [Mahmoud Basiony](https://www.linkedin.com/in/mahmoud-basiony-robotics).
 See the [project profile on GitHub](https://github.com/MahmoudBasio) or visit the
 [interactive plant point-cloud viewer](https://mahmoudbasio.github.io/AL-FALLAH/).
 
